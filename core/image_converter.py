@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from PIL import Image
 
 
+# Абстрактный класс
 # Базовый класс фабрики конвертеров
 class ConverterFactory(ABC):
     @abstractmethod
@@ -9,6 +10,7 @@ class ConverterFactory(ABC):
         pass
 
 
+# Фабрики
 # Конкретная реализация фабрики для конвертирования изображений в формат JPG
 class JPGConverterFactory(ConverterFactory):
     def create_converter(self):
@@ -50,7 +52,7 @@ class WebPConverterFactory(ConverterFactory):
     def create_converter(self):
         return WebPConverter()
 
-
+#Конкретный продукт
 # Базовый класс конвертера изображений
 class ImageConverter(ABC):
     @abstractmethod
