@@ -6,6 +6,9 @@ from core.image_converter import (JPEGConverterFactory, PNGConverterFactory, BMP
 
 class MainWindow(QMainWindow):
     def __init__(self):
+        """
+        Инициализируем и конфигурируем UI пользователя
+        """
         super().__init__()
         self.setWindowTitle("Image Converter")
 
@@ -19,13 +22,13 @@ class MainWindow(QMainWindow):
         left_layout = QVBoxLayout()
         left_layout.addStretch()
         self.select_button = QPushButton("Выбрать изображение")
-        self.select_button.setFixedSize(200, 50)  # Устанавливаем размер
+        self.select_button.setFixedSize(200, 50)
         self.select_button.clicked.connect(self.select_image)
         left_layout.addWidget(self.select_button, alignment=Qt.AlignCenter)
 
         # Добавляем кнопку "Сбросить"
         self.reset_button = QPushButton("Сбросить")
-        self.reset_button.setFixedSize(200, 25)  # Устанавливаем размер
+        self.reset_button.setFixedSize(200, 25)
         self.reset_button.clicked.connect(self.reset_selection)
         left_layout.addWidget(self.reset_button, alignment=Qt.AlignCenter)
 
@@ -46,7 +49,7 @@ class MainWindow(QMainWindow):
 
         for button in self.convert_buttons.values():
             button.setEnabled(False)
-            button.setFixedSize(200, 25)  # Устанавливаем размер
+            button.setFixedSize(200, 25)
             button.clicked.connect(self.convert_image)
             right_layout.addWidget(button, alignment=Qt.AlignCenter)
         right_layout.addStretch()
@@ -66,7 +69,7 @@ class MainWindow(QMainWindow):
     # Метод для выбора изображения
     def select_image(self):
         file_dialog = QFileDialog()
-        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)  # Разрешаем выбор нескольких файлов
+        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
         file_dialog.setNameFilter("Images (*.png *.jpg *.bmp)")
         if file_dialog.exec_():
             file_paths = file_dialog.selectedFiles()
