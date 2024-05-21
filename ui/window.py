@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
         """
         file_dialog = QFileDialog()
         file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
-        file_dialog.setNameFilter("Images (*.png *.jpg *.bmp)")
+        file_dialog.setNameFilter("Images (*.png *.jpg *.bmp *.jpeg *.webp)")
         if file_dialog.exec_():
             file_paths = file_dialog.selectedFiles()
             file_formats = [file_path.split('.')[-1].upper() for file_path in file_paths]
