@@ -67,7 +67,12 @@ class MainWindow(QMainWindow):
         self.output_format = None
 
     # Метод для выбора изображения
-    def select_image(self):
+    def select_image(self) -> None:
+        """
+        Вызывается при выборе изображений для конвертирования. Позволяет выбрать несколько файлов, но преобразован будет
+        только один.
+        Активирует кнопки, которые отличаются от формата выбранного изображения.
+        """
         file_dialog = QFileDialog()
         file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
         file_dialog.setNameFilter("Images (*.png *.jpg *.bmp)")
@@ -83,13 +88,22 @@ class MainWindow(QMainWindow):
             self.selected_file = file_paths[0] if file_paths else None
 
     # Метод для сброса выбранного файла и отключения всех кнопок конвертирования
-    def reset_selection(self):
+    def reset_selection(self) -> None:
+        """
+        Кнопка сброса программы в начальное состояние.
+        """
         self.selected_file = None
         for button in self.convert_buttons.values():
             button.setEnabled(False)
 
     # Метод для конвертации изображения
-    def convert_image(self):
+    def convert_image(self) -> None:
+        """
+        Выбираем путь для сохранения.
+        Запрашивает конвертер у абстрактных фабрик. При этом, мы ничего не знаем о конечном продукте.
+        Просим конвертер сохранить файл в другом формате по указанному адресу.
+        В случае ошибки - выдаем окошко с ошибкой. В случае проблемы с фабрикой - так же выдаем соответсвующее окошко.
+        """
         sender = self.sender()
         if sender:
             self.output_format = sender.text().split()[-1].upper()
